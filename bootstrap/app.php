@@ -22,8 +22,9 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades(true, [
-    Arquivei\LaravelPrometheusExporter\PrometheusFacade::class => 'Prometheus',
-    Superbalist\LaravelPrometheusExporter\PrometheusFacade::class => 'Prometheuss'
+    Superbalist\LaravelPrometheusExporter\PrometheusFacade::class => 'Prometheus',
+    Arquivei\LaravelPrometheusExporter\PrometheusFacade::class => 'Prometheuss'
+    
 ]);
 
 $app->withEloquent();
