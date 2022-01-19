@@ -16,3 +16,5 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/test', 'ExampleController@test');
+
+$router->get('/collector', 'CollectorController@collect');
