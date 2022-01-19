@@ -13,7 +13,7 @@ use Prometheus\Gauge;
  */
 class CollectorController extends Controller
 {
-    //**
+   /**
     * @var Gauge
     */
    protected $usersRegisteredGauge;

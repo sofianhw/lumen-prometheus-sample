@@ -11,7 +11,7 @@ services:
       - app
   app:
     hostname: app
-    container_name: lumen-example-app
+    container_name: lumen-prom-app
     build: ./docker
     env_file:
       - .env.docker
