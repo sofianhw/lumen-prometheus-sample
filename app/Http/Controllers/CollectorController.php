@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Arquivei\LaravelPrometheusExporter;
 
 use Prometheus\Gauge;
 
