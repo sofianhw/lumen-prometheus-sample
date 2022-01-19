@@ -11,8 +11,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/lumen-framework": "^6.0",
         "arquivei/laravel-prometheus-exporter": "dev-master",
-        "vlucas/phpdotenv": "^3.3",
-        "shaitan-masters/prometheus": "dev-main"
+        "superbalist/laravel-prometheus-exporter": "^1.0",
+        "vlucas/phpdotenv": "^3.3"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.4",
@@ -27,10 +27,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/Jimdo/prometheus_client_php"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/shaitan-masters/prometheus-laravel"
         }
     ],
     "autoload": {
