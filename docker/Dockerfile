@@ -1,4 +1,4 @@
-FROM php:7.2.5-fpm-alpine
+FROM php:7.4.27-alpine
 
 ENV BUILD_DEPS \
     autoconf \
