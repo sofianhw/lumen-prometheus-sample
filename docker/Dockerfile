@@ -27,6 +27,6 @@ RUN apk update && apk add --no-cache --virtual .build-deps ${BUILD_DEPS} \
     && docker-php-ext-install pdo_mysql
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN chown -R www-data:www-data storage
 
 WORKDIR /app
+RUN chown -R www-data:www-data storage

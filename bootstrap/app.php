@@ -22,7 +22,8 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades(true, [
-    Arquivei\LaravelPrometheusExporter\PrometheusFacade::class => 'Prometheus'
+    Arquivei\LaravelPrometheusExporter\PrometheusFacade::class => 'Prometheus',
+    Superbalist\LaravelPrometheusExporter\PrometheusFacade::class => 'Prometheuss'
 ]);
 
 $app->withEloquent();
@@ -93,6 +94,8 @@ $app->register(Arquivei\LaravelPrometheusExporter\DatabaseServiceProvider::class
 
 // Register this provider to get metrics from Guzzle clients. You'll need the PrometheusServiceProvider
 $app->register(Arquivei\LaravelPrometheusExporter\GuzzleServiceProvider::class);
+
+$app->register(Superbalist\LaravelPrometheusExporter\PrometheusServiceProvider::class);
 
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
