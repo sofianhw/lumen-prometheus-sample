@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Prometheus\CollectorRegistry;
-use Prometheus\Storage\Redis;
+use Arquivei\LaravelPrometheusExporter\PrometheusExporter;
+use Arquivei\LaravelPrometheusExporter\PrometheusServiceProvider;
+use Arquivei\LaravelPrometheusExporter\StorageAdapterFactory;
+use Prometheus\Storage\Adapter;
 
 /**
  * Class ExampleController
@@ -20,8 +22,7 @@ class CollectorController extends Controller
      * @throws Exception
      */
     public function collect()
-        $adapter = new Prometheus\Storage\Redis();
-        $registry = new CollectorRegistry($adapter);
+        $registry = new Arquivei\LaravelPrometheusExporter\PrometheusExporter;
         $histogram = $registry->registerHistogram('test', 'some_histogram', 'it observes', ['type'], [0.1, 1, 2, 3.5, 4, 5, 6, 7, 8, 9]);
         $histogram->observe($_GET['c'], ['blue']);
         echo "OK\n";
