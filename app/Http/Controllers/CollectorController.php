@@ -1,67 +1,29 @@
 <?php
 
-namespace Arquivei\LaravelPrometheusExporter;
+namespace App\Http\Controllers;
 
-use Prometheus\Gauge;
-
+use Prometheus\CollectorRegistry;
+use Prometheus\Storage\Redis;
 
 /**
- * Class CollectorController
+ * Class ExampleController
  * @package App\Http\Controllers
  * This class contains the example route used
  * for testing purposes in this application
  */
-class CollectorController implements CollectorInterface
+class CollectorController extends Controller
 {
     /**
-     * @var Gauge
-     */
-    protected $usersRegisteredGauge;
-
-    /**
-     * Return the name of the collector.
+     * Route used to test anything that requires
+     * a working action.
      *
-     * @return string
+     * @throws Exception
      */
-    public function getName() : string
-    {
-        return 'users';
-    }
-
-    /**
-     * Register all metrics associated with the collector.
-     *
-     * The metrics needs to be registered on the exporter object.
-     * eg:
-     * ```php
-     * $exporter->registerCounter('search_requests_total', 'The total number of search requests.');
-     * ```
-     *
-     * @param PrometheusExporter $exporter
-     */
-    public function registerMetrics(PrometheusExporter $exporter) : void
-    {
-        $this->usersRegisteredGauge = $exporter->registerGauge(
-            'users_registered_total',
-            'The total number of registered users.',
-            ['group']
-        );
-    }
-
-    /**
-     * Collect metrics data, if need be, before exporting.
-     *
-     * As an example, this may be used to perform time consuming database queries and set the value of a counter
-     * or gauge.
-     */
-    public function collect() : void
-    {
-        // retrieve the total number of staff users registered
-        // eg: $totalUsers = Users::where('group', 'staff')->count();
-        $this->usersRegisteredGauge->set(36, ['staff']);
-
-        // retrieve the total number of regular users registered
-        // eg: $totalUsers = Users::where('group', 'regular')->count();
-        $this->usersRegisteredGauge->set(192, ['regular']);
+    public function collect()
+        $adapter = new Prometheus\Storage\Redis();
+        $registry = new CollectorRegistry($adapter);
+        $histogram = $registry->registerHistogram('test', 'some_histogram', 'it observes', ['type'], [0.1, 1, 2, 3.5, 4, 5, 6, 7, 8, 9]);
+        $histogram->observe($_GET['c'], ['blue']);
+        echo "OK\n";
     }
 }
