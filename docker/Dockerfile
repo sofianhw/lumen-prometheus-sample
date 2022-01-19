@@ -1,7 +1,6 @@
 FROM php:7.4.27-alpine3.14
 
-ENV BUILD_DEPS \
-    autoconf \
+ENV autoconf \
     make \
     gcc \
     g++ \
@@ -14,7 +13,7 @@ ENV BUILD_DEPS \
     gettext \
     git
 
-RUN apk update && apk add --no-cache --virtual .build-deps ${BUILD_DEPS} \
+RUN apk update && apk add --no-cache --virtual .build-deps \
     && pecl install \
         apcu \
         apcu_bc-1.0.3 \
