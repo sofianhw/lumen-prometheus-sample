@@ -11,7 +11,7 @@ use Prometheus\Gauge;
  * This class contains the example route used
  * for testing purposes in this application
  */
-class CollectorController extends Controller implements CollectorInterface
+class CollectorController implements CollectorInterface
 {
     /**
      * @var Gauge
