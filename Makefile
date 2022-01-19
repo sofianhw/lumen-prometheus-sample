@@ -50,31 +50,33 @@ down:
 SHELL := /bin/bash
 rebuild:
 	make down
-	docker rmi -f lumen-example-app_app
+	docker rmi -f lumen-prometheus-sample_app
 	set -a ;\
     source .env.docker ;\
 	docker-compose up -d ;\
 
 provision:
-	docker exec -it lumen-example-app scripts/grafana_provision.sh
+	docker exec -it lumen-prom-app scripts/grafana_provision.sh
 
 generate-links:
-	docker exec -it lumen-example-app scripts/url_print.sh
+	docker exec lumen-prom-app chown -R www-data:www-data /app/storage
+	docker exec -it lumen-prom-app scripts/url_print.sh
 
 create-db:
-	docker exec lumen-example-app php artisan db:create
+	docker exec lumen-prom-app php artisan db:create
 
 setup-env:
-	docker exec lumen-example-app cp .env.example .env
+	docker exec lumen-prom-app cp .env.example .env
 
 migrate:
-	docker exec -it lumen-example-app php artisan migrate
+	docker exec -it lumen-prom-app php artisan migrate
 
 update:
-	docker exec -it lumen-example-app composer update
+	docker exec -it lumen-prom-app composer update
 
 install:
-	docker exec -it lumen-example-app composer install
+	docker exec -it lumen-prom-app composer install
+
 
 SHELL := /bin/bash
 call:

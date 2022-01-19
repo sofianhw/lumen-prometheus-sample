@@ -27,3 +27,9 @@ scrape_configs:
       - targets: ["nginx"]
         labels:
           instance: app
+  - job_name: "apps"
+    metrics_path: "/metriks"
+    static_configs:
+      - targets: ["nginx"]
+        labels:
+          instance: app

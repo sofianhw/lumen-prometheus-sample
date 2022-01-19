@@ -36,12 +36,24 @@ class CollectorController extends Controller
 	    $registry = \Prometheus\CollectorRegistry::getDefault();
 
         $counter = $registry->getOrRegisterCounter('test', 'some_counter', 'it increases', ['type']);
-        $counter->incBy(3, ['blue']);
+        $counter->incBy(2, ['blue']);
 
         $gauge = $registry->getOrRegisterGauge('test', 'some_gauge', 'it sets', ['type']);
-        $gauge->set(2.5, ['blue']);
+        $gauge->set(4, ['blue']);
 
         $histogram = $registry->getOrRegisterHistogram('test', 'some_histogram', 'it observes', ['type'], [0.1, 1, 2, 3.5, 4, 5, 6, 7, 8, 9]);
-        $histogram->observe(3.5, ['blue']);
+        $histogram->observe(6, ['blue']);
+
+        $counter = $registry->getOrRegisterCounter('test', 'some_counter', 'it increases', ['type']);
+        $counter->incBy(1, ['red']);
+
+        $gauge = $registry->getOrRegisterGauge('test', 'some_gauge', 'it sets', ['type']);
+        $gauge->set(3, ['red']);
+
+        $histogram = $registry->getOrRegisterHistogram('test', 'some_histogram', 'it observes', ['type'], [0.1, 1, 2, 3.5, 4, 5, 6, 7, 8, 9]);
+        $histogram->observe(5, ['red']);
+
+        header('Content-type: text/html');
+        echo "ok"
     }
 }
