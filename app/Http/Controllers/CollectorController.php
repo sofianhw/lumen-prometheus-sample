@@ -54,6 +54,6 @@ class CollectorController extends Controller
         $histogram->observe(5, ['red']);
 
         header('Content-type: text/html');
-        echo "ok"
+        echo "ok";
     }
 }
