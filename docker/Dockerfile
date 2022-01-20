@@ -29,4 +29,3 @@ RUN apk update && apk add --no-cache --virtual .build-deps ${BUILD_DEPS} \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /app
-RUN chown -R www-data:www-data storage
